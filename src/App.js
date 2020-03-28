@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import About from "./components/pages/About";
+import Disclaimer from "./components/pages/Disclaimer";
+import Credits from "./components/pages/Credits";
 import './App.css';
+import UsersLists from "./components/UsersLists";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Router>
+            <div className="App">
+                <Header/>
+                <div className="container">
+                    <div className="row">
+                        <div className="col">
+                            <Route exact path="/" render={props => (
+                                <UsersLists/>
+                            )}></Route>
+                            <Route path="/about" component={About}/>
+                            <Route path="/credits" component={Credits}/>
+                            <Route path="/disclaimer" component={Disclaimer}/>
+                        </div>
+                    </div>
+
+                </div>
+
+                <Footer/>
+            </div>
+        </Router>
+    );
 }
 
 export default App;
